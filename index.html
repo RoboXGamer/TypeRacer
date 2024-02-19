@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeRacer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body class="bg-slate-900 text-white">
+    <header class=""></header>
+    <main class="container mx-auto">
+      <div
+        id="content"
+        class="grid grid-cols-1 place-items-center min-h-screen"
+      >
+        <ul
+          id="word-list"
+          class="flex p-2 gap-x-2 items-center justify-center h-full w-full flex-wrap"
+        ></ul>
+
+        <div id="input">
+          <form id="text-form">
+            <input
+              type="text"
+              id="text"
+              autocomplete="off"
+              spellcheck="false"
+              autofocus
+              class="text-3xl p-2 bg-slate-800 text-center"
+            />
+          </form>
+        </div>
+        <div id="message"></div>
+      </div>
+    </main>
+    <template id="word-template">
+      <li
+        id="word"
+        class="p-2 bg-slate-800"
+        data-current="false"
+        data-state
+      ></li>
+    </template>
+  </body>
+</html>
