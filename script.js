@@ -1,6 +1,5 @@
 // console.log("Hello World!");
 let NO_OF_WORDS = 1;
-// const API_URL = `https://random-word-api.herokuapp.com/word?number=${NO_OF_WORDS}`;
 const API_URL = `https://api.freeapi.app/api/v1/public/quotes/quote/random`;
 let currentWordIndex = 0;
 
@@ -28,7 +27,7 @@ const main = async function () {
   };
 
   const highlightCurrentWord = function (index) {
-    const wordListElm = document.querySelector("#word-list");
+    // const wordListElm = document.querySelector("#word-list");
     const words = wordListElm.children;
     if (index > 0) {
       words[index - 1].classList.remove("border-2", "border-dotted");
@@ -55,9 +54,9 @@ const main = async function () {
   renderInitialWords();
   highlightCurrentWord(currentWordIndex);
 
-  textInputForm.addEventListener("submit", (e) => {
+  const handleTyping = function (e) {
     e.preventDefault();
-    const typedWord = textInputForm.text.value;
+    const typedWord = textInputForm.text.value.trim();
     // console.log(typedWord);
     const state = checkWord(typedWord);
     wordListElm.children[currentWordIndex].dataset.state = state;
@@ -87,7 +86,17 @@ const main = async function () {
       );
     }
     textInputForm.text.value = "";
-  });
+  };
+
+  const handleTypingNew = function (e) {
+    if (e.code === "Space") {
+      e.preventDefault();
+      handleTyping(e);
+    }
+  };
+
+  textInputForm.addEventListener("keyup", handleTypingNew);
+  textInputForm.addEventListener("submit", handleTyping);
 };
 
 main();
